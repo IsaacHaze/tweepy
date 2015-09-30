@@ -948,6 +948,19 @@ class API(object):
         )
 
     @property
+    def lists_owned(self):
+        """ :reference: https://dev.twitter.com/rest/reference/get/lists/ownership
+            :allowed_param:'screen_name', 'user_id', 'count', 'cursor'
+        """
+        return bind_api(
+            api=self,
+            path='/lists/ownerships.json',
+            payload_type='list', payload_list=True,
+            allowed_param=['screen_name', 'user_id', 'count', 'cursor'],
+            require_auth=True
+        )
+
+    @property
     def lists_memberships(self):
         """ :reference: https://dev.twitter.com/rest/reference/get/lists/memberships
             :allowed_param:'screen_name', 'user_id', 'filter_to_owned_lists', 'cursor'
